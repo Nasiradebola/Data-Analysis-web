@@ -4,8 +4,7 @@ from io import StringIO
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from analysis.data_visualization import data_visualization_barchart,data_visualization_piechart
-
+from analysis.data_visualization import data_visualization_barchart,data_visualization_barcharth,data_visualization_piechart,data_visualization_doughnut_chart,plot_bar_chart
 def display_data_analysis(df):
    # st.header("Data Analysis")
     st.session_state.df = pd.DataFrame(df)
@@ -88,21 +87,6 @@ def display_data_analysis(df):
                                 st.session_state.df.dropna(inplace=True)
                                 removed_rows = initial_count - st.session_state.df.shape[0]
                                 st.success(f"Dropped {removed_rows} rows with missing values.")
-
-                            # elif handling_missing == "Fill with mean":
-                            #     numeric_cols = st.session_state.df.select_dtypes(include=['float64', 'int64']).columns
-                            #     st.session_state.df[numeric_cols] = st.session_state.df[numeric_cols].fillna(st.session_state.df[numeric_cols].mean())
-                            #     st.success("Filled missing values with the mean.")
-
-                            # elif handling_missing == "Fill with median":
-                            #     numeric_cols = st.session_state.df.select_dtypes(include=['float64', 'int64']).columns
-                            #     st.session_state.df[numeric_cols] = st.session_state.df[numeric_cols].fillna(st.session_state.df[numeric_cols].median())
-                            #     st.success("Filled missing values with the median.")
-
-                            # elif handling_missing == "Fill with mode":
-                            #     mode_values = st.session_state.df.mode().iloc[0]
-                            #     st.session_state.df = st.session_state.df.fillna(mode_values)
-                            #     st.success("Filled missing values with the mode.")
 
                             elif handling_missing == "Fill with a specific value":
                                 if specific_value:
@@ -288,15 +272,15 @@ def display_data_analysis(df):
                 )
 
                 # 3. Year of Study Distribution (Pie Chart)
-                data_visualization_piechart(
+                data_visualization_doughnut_chart(
                     "3. Year of Study Distribution", 
-                    'Current year of study?', 
+                    'Current year of study', 
                     "Total number of users by year of study:", 
                     st.session_state.df
                 )
 
                 # 4. Course of Study Distribution (Bar Chart)
-                data_visualization_barchart(
+                data_visualization_barcharth(
                     "4. Course of Study Distribution", 
                     "Course", 
                     "Total number of users by course of study:", 
@@ -313,8 +297,48 @@ def display_data_analysis(df):
 
                 # 6. Accommodation and Year of Study Distribution (Bar Chart)
                 data_visualization_barchart(
-                    "6. Accommodation and Year of Study Distribution", 
+                    "6. Accommodation Distribution", 
                     'Accommodation for your studies', 
                     "Total number of users by accommodation type:", 
                     st.session_state.df
                 )
+
+                plot_bar_chart(df, ['Current year of study', 'Location'], 
+               "7. Location and Year of Study Distribution", 
+               "Current Year of Study", "Number of Responders")
+
+                plot_bar_chart(df, ['Current year of study', 'Accessibility of Interpreters'], 
+                            "8. Interpreter Availability for Classes", 
+                            "Current Year of Study", "Number of Responders")
+
+                plot_bar_chart(df, ['Current year of study', 'Understanding Lectures with Interpreters'], 
+                            "9. Understanding Lectures with Interpreters", 
+                            "Current Year of Study", "Number of Responders")
+
+                plot_bar_chart(df, ['Current year of study', 'Interpreter Understanding of Sign Language'], 
+                            "10. Interpreter Understanding of Sign Language", 
+                            "Current Year of Study", "Number of Responders")
+
+                plot_bar_chart(df, ['Current year of study', 'Consistency of Interpreters in classes'], 
+                            "11. Consistency of Interpreters in Classes", 
+                            "Current Year of Study", "Number of Responders")
+
+                plot_bar_chart(df, ['Current year of study', 'Interpreters for understanding the course material'], 
+                            "12. Interpreters for Understanding Course Material", 
+                            "Current Year of Study", "Number of Responders")
+
+                plot_bar_chart(df, ['Current year of study', 'Interpreters for Academic Activies Outsides Class'], 
+                            "13. Interpreters for Academic Activities Outside Class", 
+                            "Current Year of Study", "Number of Responders")
+
+                plot_bar_chart(df, ['Current year of study', 'Interpreters support outside class'], 
+                            "14. Interpreters Support Outside Class", 
+                            "Current Year of Study", "Number of Responders")
+
+                plot_bar_chart(df, ['Current year of study', 'Rating the Quality of the Sign Language Interpreters'], 
+                            "15. Rating the Quality of the Sign Language Interpreters", 
+                            "Current Year of Study", "Number of Responders")
+
+                plot_bar_chart(df, ['Current year of study', 'Satisfaction with Interpreter services'], 
+                            "16. Satisfaction with Interpreter Services", 
+                            "Current Year of Study", "Number of Responders")
