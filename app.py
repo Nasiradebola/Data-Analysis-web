@@ -28,7 +28,7 @@ def loading():
         return None
 
 
-st.sidebar.title("University Interpreter Services Survey Analysis")
+st.sidebar.title("Institution Interpreter Services Survey Analysis")
 
 df = loading()
 

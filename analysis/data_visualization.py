@@ -82,7 +82,7 @@ def data_visualization_doughnut_chart(subheader, column, content, df):
     st.write(content)
     fig, ax = plt.subplots()
     ax.pie(
-        df_column, labels=df_column.index, autopct='%1.1f%%', startangle=90,
+        df_column, labels=df_column.index,  autopct='%1.1f%%', startangle=90,
         wedgeprops={'width': 0.5}
     )
     ax.axis('equal')
